@@ -1,0 +1,14 @@
+
+# macOS 文件
+.DS_Store
+
+# Python 缓存和虚拟环境
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 本地环境变量
+.env
+.env.*
+!.env.example
