@@ -100,10 +100,14 @@ $$p = \sum_{k \ge h} \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}}$$
 
 ## 2.4 嵌入可视化
 
-取 9,512 个目标细胞转变向量和 18,254 个基因向量的合并矩阵 X（27,766 × 1,024，行已归一化），构造三个互相正交的方向：
+取 9,512 个目标细胞转变向量和 18,254 个基因向量的合并矩阵 X（27,766 × 1,024），构造三个互相正交的方向：
 
 $$\hat{m} = \frac{m}{\lVert m \rVert}, \quad g = \bar{x}_{\mathrm{gene}} - \bar{x}_{\mathrm{cell}}, \quad \hat{g} = \frac{g - (g \cdot \hat{m})\hat{m}}{\lVert g - (g \cdot \hat{m})\hat{m} \rVert}$$
 
-$r_i = x_i - (x_i \cdot \hat{m})\hat{m} - (x_i \cdot \hat{g})\hat{g}$，$\hat{p} = \mathrm{PC1}(\{r_i\})$，并对 $\hat{m}$ 和 $\hat{g}$ 正交化。
+$$r_i = x_i - (x_i \cdot \hat{m})\hat{m} - (x_i \cdot \hat{g})\hat{g}$$
+
+$$\hat{p} = \mathrm{PC1}(\{r_i\})$$
+
+并对 $\hat{m}$ 和 $\hat{g}$ 正交化。
 
 每个点 $i$ 的坐标为 $(x_i \cdot \hat{m},\ x_i \cdot \hat{g},\ x_i \cdot \hat{p})$。由于 $e_g \cdot \hat{m} = s_g/44.64$，基因在横轴上的坐标与得分严格成正比。UMAP 在 PCA 50 维上计算（解释方差合计 0.591），余弦距离，n_neighbors = 30，min_dist = 0.3，random_state = 0。
